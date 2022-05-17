@@ -7,6 +7,8 @@ import './App.css';
 
 
 //Pseudocode:
+//API Key
+ const OPENAI_SECRET = "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";
 //Create a form for text prompts and attach an event listener to it.
 //Submitting the form will send the prompt to the OpenAi API.
 //Results will be displayed in a list, sorted from the newest to the latest.
