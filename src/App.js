@@ -5,17 +5,15 @@ import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 //styles
 import './App.css';
 
-
+// console.log(process.env.REACT_APP_OPENAI_SECRET);
 //Pseudocode:
 //Create a form for text prompts and attach an event listener to it.
 //Submitting the form will send the prompt to the OpenAi API.
 //Results will be displayed in a list, sorted from the newest to the latest.
 //Each result should include the original prompt and a response from the API.
-// API-KEY: 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
+// API-KEY: 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
 
 const App = () => {
-  //API key
-  const OPENAI_SECRET = "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";
   //responses is the state that displays the response from the API call.
  const [responses, setResponses] = useState('');
  //prompt is the state that displays the prompt the user typed onto the page.
@@ -24,16 +22,15 @@ const App = () => {
   const [message, setMessage] = useState('');
   //container is what is being pushed into the firebase.
   const [container, setContainer] = useState([]);
-
-
- useEffect(() => {
-   fetch(
-    "https://api.openai.com/v1/engines/text-curie-001/completions",
-    {
+  
+  
+  useEffect(() => {
+    const BASE_URL = process.env.REACT_APP_OPENAI_SECRET
+    fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_SECRET}`,
+        Authorization: `Bearer ${BASE_URL}`,
       },
       body: JSON.stringify({
         prompt: prompt,
@@ -43,16 +40,15 @@ const App = () => {
         frequency_penalty: 0.0,
         presence_penalty: 0.0,
       }),
-    }
-  )
-  .then((response) => response.json())
-  .then((jsonResult) => {
-    setResponses(jsonResult.choices[0].text);
     })
-    .catch((error) => {
-      setMessage(error);
-    })
-}, [responses]);
+      .then((response) => response.json())
+      .then((jsonResult) => {
+        setResponses(jsonResult.choices[0].text);
+      })
+      .catch((error) => {
+        setMessage(error);
+      });
+  }, [responses]);
 
 const handleSubmit = (event) => {
   event.preventDefault();
