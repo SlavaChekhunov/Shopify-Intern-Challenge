@@ -5,7 +5,7 @@ import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 //styles
 import './App.css';
 
-
+// console.log(process.env.REACT_APP_OPENAI_SECRET);
 //Pseudocode:
 //Create a form for text prompts and attach an event listener to it.
 //Submitting the form will send the prompt to the OpenAi API.
