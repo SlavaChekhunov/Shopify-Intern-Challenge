@@ -14,8 +14,6 @@ import './App.css';
 // API-KEY: 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
 
 const App = () => {
-  //API key
-  const OPENAI_SECRET = "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";
   //responses is the state that displays the response from the API call.
  const [responses, setResponses] = useState('');
  //prompt is the state that displays the prompt the user typed onto the page.
