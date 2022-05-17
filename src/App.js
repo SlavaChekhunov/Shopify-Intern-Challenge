@@ -10,7 +10,6 @@ import './App.css';
 //Submitting the form will send the prompt to the OpenAi API.
 //Results will be displayed in a list, sorted from the newest to the latest.
 //Each result should include the original prompt and a response from the API.
-// API-KEY: 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
 
 const App = () => {
   //responses is the state that displays the response from the API call.
